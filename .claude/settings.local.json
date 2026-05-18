@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(superpowers:brainstorming)",
+      "Skill(superpowers:brainstorming:*)",
+      "Bash(rtk git *)",
+      "Bash(rtk ls *)",
+      "Bash(rtk composer *)",
+      "Bash(./vendor/bin/pest tests/Feature/AuthTest.php --filter \"logout\")",
+      "Bash(./vendor/bin/pest tests/Feature/AuthTest.php)",
+      "Bash(php artisan *)",
+      "Bash(php -l app/Services/DashboardService.php)",
+      "Bash(php -l app/Http/Controllers/DashboardController.php)",
+      "Bash(rtk read *)",
+      "Bash(node_modules/.bin/tsc --version)",
+      "Bash(rtk grep *)",
+      "Bash(node -e \"const p=require\\('./node_modules/bootstrap-icons/package.json'\\); console.log\\(p.version\\)\")",
+      "Bash(node -e \"const icons=require\\('./node_modules/bootstrap-icons/font/bootstrap-icons.json'\\); const keys=Object.keys\\(icons\\); console.log\\(keys.length\\); console.log\\(keys.slice\\(0,5\\).join\\(','\\)\\)\")",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(rtk curl *)",
+      "Bash(dir c:\\\\ProjetosProgramacao\\\\laravel\\\\financas-pessoais /b)"
+    ]
+  }
+}
