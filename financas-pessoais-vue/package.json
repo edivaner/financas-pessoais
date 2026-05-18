@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "financas-pessoais-vue",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "sass": "^1.92.1",
+    "typescript": "^6.0.3",
+    "vite": "^7.0.4",
+    "vite-plugin-pwa": "^1.0.3"
+  },
+  "dependencies": {
+    "apexcharts": "^5.12.0",
+    "axios": "^1.11.0",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "bootstrap-vue-next": "^0.40.1",
+    "flatpickr": "^4.6.13",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.21",
+    "vue-router": "^4.5.1",
+    "vue3-apexcharts": "^1.4.4"
+  }
+}

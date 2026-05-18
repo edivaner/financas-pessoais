@@ -1,0 +1,24 @@
+# Laravel
+financas-pessoais-laravel/vendor/
+financas-pessoais-laravel/node_modules/
+financas-pessoais-laravel/.env
+financas-pessoais-laravel/storage/logs/*.log
+financas-pessoais-laravel/storage/framework/cache/
+financas-pessoais-laravel/storage/framework/sessions/
+financas-pessoais-laravel/storage/framework/views/
+financas-pessoais-laravel/bootstrap/cache/
+financas-pessoais-laravel/public/build/
+
+# Vue
+financas-pessoais-vue/node_modules/
+financas-pessoais-vue/dist/
+financas-pessoais-vue/.env
+financas-pessoais-vue/.env.local
+
+# Flutter
+financas-pessoais-flutter/.dart_tool/
+financas-pessoais-flutter/build/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,104 @@
+// Bootstrap variable overrides (must be before bootstrap import)
+$primary: #22c55e;
+$secondary: #64748b;
+$success: #22c55e;
+$danger: #ef4444;
+$warning: #f59e0b;
+$info: #3b82f6;
+$dark: #0f172a;
+$light: #f8fafc;
+
+$border-radius: 0.75rem;
+$border-radius-lg: 1rem;
+$border-radius-pill: 50rem;
+
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+
+$card-border-radius: $border-radius;
+$card-box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+
+// Global styles
+:root {
+  --color-income: #22c55e;
+  --color-expense: #ef4444;
+  --color-transfer: #3b82f6;
+  --color-investment: #a855f7;
+  --color-pending: #f59e0b;
+  --bottom-nav-height: 70px;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+// Dark mode token overrides
+[data-bs-theme="dark"] {
+  --bs-body-bg: #0f172a;
+  --bs-body-color: #e2e8f0;
+  --bs-card-bg: #1e293b;
+  --bs-border-color: #334155;
+  --bs-secondary-bg: #1e293b;
+}
+
+// Cards
+.card-modern {
+  background: var(--bs-card-bg, #fff);
+  border-radius: $border-radius;
+  box-shadow: $card-box-shadow;
+  border: 1px solid var(--bs-border-color);
+  padding: 1rem;
+}
+
+// Floating action button
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $primary;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(34,197,94,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(34,197,94,.5);
+  }
+}
+
+// Amount colors
+.text-income  { color: var(--color-income) !important; }
+.text-expense { color: var(--color-expense) !important; }
+.text-invest  { color: var(--color-investment) !important; }
+.text-pending { color: var(--color-pending) !important; }
+
+// Bottom nav spacing
+.main-content {
+  padding-bottom: calc(var(--bottom-nav-height) + 1rem);
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding-bottom: 1rem;
+    margin-left: 240px;
+  }
+}
+
+// Inputs
+.form-control, .form-select {
+  border-radius: $border-radius;
+}
+
+// Offcanvas / Modal forms
+.form-label {
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--bs-secondary);
+}
