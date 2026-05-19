@@ -1,5 +1,18 @@
-# Laravel
+# Laravel (monorepo)
 financas-pessoais-laravel/vendor/
+
+# Laravel (root)
+/vendor/
+/node_modules/
+/.env
+/storage/logs/*.log
+/storage/framework/cache/data/
+/storage/framework/sessions/
+/storage/framework/views/
+/bootstrap/cache/
+/public/build/
+/public/hot
+/public/storage
 financas-pessoais-laravel/node_modules/
 financas-pessoais-laravel/.env
 financas-pessoais-laravel/storage/logs/*.log
@@ -25,3 +38,7 @@ Thumbs.db
 
 # Claude worktrees
 .claude/worktrees/
+
+node_modules/
+database
+vendor
