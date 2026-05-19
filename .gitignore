@@ -5,10 +5,7 @@ financas-pessoais-laravel/vendor/
 /vendor/
 /node_modules/
 /.env
-/storage/logs/*.log
-/storage/framework/cache/data/
-/storage/framework/sessions/
-/storage/framework/views/
+/storage/
 /bootstrap/cache/
 /public/build/
 /public/hot
@@ -41,4 +38,3 @@ Thumbs.db
 
 node_modules/
 database
-vendor
