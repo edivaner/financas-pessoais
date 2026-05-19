@@ -22,6 +22,7 @@ export default defineConfig({
         ],
       },
       workbox: { globPatterns: ['**/*.{js,css,html,png,svg}'] },
+      devOptions: { enabled: false },
     }),
   ],
   resolve: {
@@ -35,6 +36,10 @@ export default defineConfig({
         changeOrigin: true,
       },
       '/sanctum': {
+        target: process.env.VITE_API_URL || 'http://localhost:8000',
+        changeOrigin: true,
+      },
+      '/storage': {
         target: process.env.VITE_API_URL || 'http://localhost:8000',
         changeOrigin: true,
       },

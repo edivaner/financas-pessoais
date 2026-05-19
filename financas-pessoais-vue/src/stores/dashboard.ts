@@ -17,7 +17,7 @@ export const useDashboardStore = defineStore('dashboard', () => {
     }
   }
 
-  const totais  = () => data.value?.totais   ?? {}
+  const totais  = () => data.value?.totais   ?? { saldo_disponivel: 0, receitas: 0, despesas: 0, pago: 0, pendente: 0, saldo_investido: 0 }
   const contas  = () => data.value?.contas   ?? []
   const cartoes = () => data.value?.cartoes  ?? []
   const limites = () => data.value?.limites  ?? []

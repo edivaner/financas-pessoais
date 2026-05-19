@@ -37,6 +37,9 @@
     <div class="mb-3">
       <label class="form-label">Saldo inicial</label>
       <CurrencyInput v-model="form.saldo" placeholder="0,00" :disabled="!!modelValue" />
+      <div v-if="modelValue" class="form-text text-warning">
+        <i class="bi bi-info-circle me-1"></i>Para alterar o saldo, faça um lançamento.
+      </div>
     </div>
 
     <div class="mb-3 d-flex gap-3 flex-wrap">
@@ -59,6 +62,9 @@
       <div v-if="showMore" class="mb-3">
         <label class="form-label">Saldo investido</label>
         <CurrencyInput v-model="form.saldo_investido" placeholder="0,00" :disabled="!!modelValue" />
+        <div v-if="modelValue" class="form-text text-warning">
+          <i class="bi bi-info-circle me-1"></i>Para alterar o saldo investido, faça um lançamento de investimento.
+        </div>
       </div>
     </template>
 

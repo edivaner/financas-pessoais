@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('saldo_investido', 19, 4)->default(0);
             $table->boolean('somar_tela_inicial')->default(true);
             $table->uuid('imagem_id')->nullable();
+            $table->string('logo_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

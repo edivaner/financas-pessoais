@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('telefone')->nullable();
             $table->string('profissao')->nullable();
             $table->uuid('imagem_id')->nullable();
+            $table->boolean('dark_mode')->default(false);
+            $table->string('currency', 10)->default('BRL');
             $table->boolean('staff')->default(false);
             $table->enum('cargo', ['ADM', 'SUPORTE', 'CLIENTE'])->default('CLIENTE');
             $table->timestamp('email_verified_at')->nullable();

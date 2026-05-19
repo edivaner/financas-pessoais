@@ -9,9 +9,11 @@ class StoreLimiteRequest extends FormRequest
 
     public function rules(): array
     {
+        $userId = $this->user()->id;
+
         return [
-            'categoria_id' => 'required|exists:categorias,id',
-            'titulo'       => 'required|string|max:100',
+            'categoria_id' => ['required', \Illuminate\Validation\Rule::exists('categorias', 'id')->where('user_id', $userId)],
+            'titulo'       => 'required|string|max:25',
             'descricao'    => 'nullable|string|max:255',
             'valor_limite' => 'required|numeric|min:0.01',
         ];

@@ -15,7 +15,12 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Senha</label>
-          <input v-model="form.password" type="password" class="form-control" required autocomplete="current-password" placeholder="••••••••" />
+          <div class="input-group">
+            <input v-model="form.password" :type="showPassword ? 'text' : 'password'" class="form-control" required autocomplete="current-password" placeholder="••••••••" />
+            <button type="button" class="btn btn-outline-secondary" @click="showPassword = !showPassword" tabindex="-1">
+              <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
+          </div>
         </div>
 
         <div v-if="error" class="alert alert-danger py-2 mb-3">{{ error }}</div>
@@ -47,6 +52,7 @@ const error  = ref('')
 const loading = ref(false)
 
 const form = reactive({ email: '', password: '' })
+const showPassword = ref(false)
 
 const submit = async () => {
   error.value = ''

@@ -47,7 +47,7 @@
         <button type="button" class="btn-close" @click="showForm = false"></button>
       </div>
       <div class="offcanvas-body pt-0">
-        <CardForm :model-value="editing" @cancel="showForm = false" @saved="onSaved" />
+        <CardForm :key="formKey" :model-value="editing" @cancel="showForm = false" @saved="onSaved" />
       </div>
     </div>
     <div v-if="showForm" class="offcanvas-backdrop fade show" @click="showForm = false"></div>
@@ -89,9 +89,10 @@ const showForm   = ref(false)
 const showDelete = ref(false)
 const editing    = ref<Cartao | null>(null)
 const deleting   = ref<Cartao | null>(null)
+const formKey    = ref(0)
 
-const openCreate    = () => { editing.value = null; showForm.value = true }
-const openEdit      = (c: Cartao) => { editing.value = c; showForm.value = true }
+const openCreate    = () => { formKey.value++; editing.value = null; showForm.value = true }
+const openEdit      = (c: Cartao) => { formKey.value++; editing.value = c; showForm.value = true }
 const confirmDelete = (c: Cartao) => { deleting.value = c; showDelete.value = true }
 const onSaved       = () => { showForm.value = false; store.fetchCartoes() }
 

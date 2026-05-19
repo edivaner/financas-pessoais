@@ -47,7 +47,7 @@
         <button type="button" class="btn-close" @click="showForm = false"></button>
       </div>
       <div class="offcanvas-body pt-0">
-        <AccountForm :model-value="editing" @cancel="showForm = false" @saved="onSaved" />
+        <AccountForm :key="formKey" :model-value="editing" @cancel="showForm = false" @saved="onSaved" />
       </div>
     </div>
     <div v-if="showForm" class="offcanvas-backdrop fade show" @click="showForm = false"></div>
@@ -87,9 +87,10 @@ const showForm   = ref(false)
 const showDelete = ref(false)
 const editing    = ref<Conta | null>(null)
 const deleting   = ref<Conta | null>(null)
+const formKey    = ref(0)
 
-const openCreate    = () => { editing.value = null; showForm.value = true }
-const openEdit      = (c: Conta) => { editing.value = c; showForm.value = true }
+const openCreate    = () => { formKey.value++; editing.value = null; showForm.value = true }
+const openEdit      = (c: Conta) => { formKey.value++; editing.value = c; showForm.value = true }
 const confirmDelete = (c: Conta) => { deleting.value = c; showDelete.value = true }
 const onSaved       = () => { showForm.value = false; store.fetchContas() }
 

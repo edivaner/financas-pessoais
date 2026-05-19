@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('caminho');
-            $table->enum('tipo', ['LOGO', 'LANCAMENTO']);
+            $table->enum('tipo', ['LOGO', 'LANCAMENTO', 'AVATAR']);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

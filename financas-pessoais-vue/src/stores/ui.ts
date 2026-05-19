@@ -7,9 +7,9 @@ export const useUiStore = defineStore('ui', () => {
   const currency = ref('BRL')
 
   const loadFromUser = (user: { dark_mode: boolean; currency: string }) => {
-    darkMode.value = user.dark_mode
-    currency.value = user.currency
-    applyDarkMode(user.dark_mode)
+    darkMode.value = user.dark_mode ?? false
+    currency.value = user.currency || 'BRL'
+    applyDarkMode(darkMode.value)
   }
 
   const applyDarkMode = (value: boolean) => {
@@ -38,11 +38,13 @@ export const useUiStore = defineStore('ui', () => {
 
   const currencySymbol = computed(() => currency.value === 'USD' ? '$' : 'R$')
 
-  const formatCurrency = (value: number) =>
-    new Intl.NumberFormat(currency.value === 'USD' ? 'en-US' : 'pt-BR', {
+  const formatCurrency = (value: number) => {
+    const code = currency.value || 'BRL'
+    return new Intl.NumberFormat(code === 'USD' ? 'en-US' : 'pt-BR', {
       style: 'currency',
-      currency: currency.value,
+      currency: code,
     }).format(value ?? 0)
+  }
 
   return { darkMode, currency, currencySymbol, loadFromUser, toggleDarkMode, setCurrency, formatCurrency }
 })

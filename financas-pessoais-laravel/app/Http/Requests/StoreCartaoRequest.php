@@ -9,8 +9,10 @@ class StoreCartaoRequest extends FormRequest
 
     public function rules(): array
     {
+        $userId = $this->user()->id;
+
         return [
-            'conta_id'        => 'required|exists:contas,id',
+            'conta_id'        => ['required', \Illuminate\Validation\Rule::exists('contas', 'id')->where('user_id', $userId)],
             'nome'            => 'required|string|max:100',
             'tipo'            => 'required|in:CREDITO,DEBITO,MULTIPLO',
             'limite_total'          => 'required|numeric|min:0',

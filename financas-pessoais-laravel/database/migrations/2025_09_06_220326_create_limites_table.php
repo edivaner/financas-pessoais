@@ -15,8 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('categoria_id');
-            $table->string('titulo');
-            $table->text('descricao')->nullable();
+            $table->string('titulo', 25);
+            $table->string('descricao', 255)->nullable();
             $table->decimal('valor_limite', 19, 4);
             $table->decimal('valor_gasto_atual', 19, 4)->default(0);
             $table->enum('periodicidade', ['MENSAL'])->default('MENSAL');

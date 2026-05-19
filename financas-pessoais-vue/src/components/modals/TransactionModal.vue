@@ -86,14 +86,14 @@
             <label class="form-label">Cartão (opcional)</label>
             <select v-model="form.cartao_id" class="form-select">
               <option value="">Sem cartão</option>
-              <option v-for="c in cartaoStore.cartoes" :key="c.id" :value="c.id">{{ c.nome }}</option>
+              <option v-for="c in cartoesDaConta" :key="c.id" :value="c.id">{{ c.nome }}</option>
             </select>
           </div>
           <div v-if="form.cartao_id" class="mb-3">
             <label class="form-label">Tipo de pagamento</label>
             <select v-model="form.tipo_cartao" class="form-select">
-              <option value="CREDITO">Crédito</option>
-              <option value="DEBITO">Débito</option>
+              <option v-if="tiposCartaoDisponiveis.includes('CREDITO')" value="CREDITO">Crédito</option>
+              <option v-if="tiposCartaoDisponiveis.includes('DEBITO')" value="DEBITO">Débito</option>
             </select>
           </div>
           <div v-if="!form.cartao_id || form.tipo_cartao === 'CREDITO'" class="mb-3">
@@ -183,6 +183,30 @@ const form = reactive({
   titulo: '', valor: 0, data: (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}` })(),
   conta_origem_id: '', conta_destino_id: '', cartao_id: '', tipo_cartao: 'CREDITO',
   categoria_id: '', subcategoria_id: '', descricao: '', parcela_total: 1, para_saldo_investido: false,
+})
+
+const cartoesDaConta = computed(() =>
+  cartaoStore.cartoes.filter(c => String(c.conta_id) === String(form.conta_origem_id))
+)
+
+const cartaoSelecionado = computed(() =>
+  cartaoStore.cartoes.find((c: { id: string }) => c.id === form.cartao_id) ?? null
+)
+
+const tiposCartaoDisponiveis = computed(() => {
+  const tipo = cartaoSelecionado.value?.tipo
+  if (tipo === 'CREDITO') return ['CREDITO']
+  if (tipo === 'DEBITO')  return ['DEBITO']
+  return ['CREDITO', 'DEBITO']
+})
+
+watch(() => form.conta_origem_id, () => { form.cartao_id = '' })
+
+watch(() => form.cartao_id, () => {
+  const tipos = tiposCartaoDisponiveis.value
+  if (!tipos.includes(form.tipo_cartao)) {
+    form.tipo_cartao = tipos[0]
+  }
 })
 
 // currency mask

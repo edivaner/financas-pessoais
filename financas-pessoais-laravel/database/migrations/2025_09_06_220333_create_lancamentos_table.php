@@ -22,6 +22,7 @@ return new class extends Migration
             $table->uuid('subcategoria_id')->nullable();
             $table->uuid('conta_origem_id')->nullable();
             $table->uuid('conta_destino_id')->nullable();
+            $table->boolean('para_saldo_investido')->default(false);
             $table->uuid('cartao_id')->nullable();
             $table->enum('tipo_cartao', ['DEBITO', 'CREDITO'])->nullable();
             $table->date('data');

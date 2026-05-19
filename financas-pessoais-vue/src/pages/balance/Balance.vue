@@ -81,7 +81,7 @@
         </div>
 
         <!-- Donut chart por categoria -->
-        <div class="card-modern mb-4" v-if="store.porCategoria.length">
+        <div class="card-modern mb-4" v-if="chartsReady && store.porCategoria.length">
           <div class="p-3 border-bottom fw-semibold">Gastos por Categoria</div>
           <div class="p-3">
             <VueApexCharts
@@ -101,7 +101,7 @@
         </div>
 
         <!-- Bar chart entradas x saídas -->
-        <div class="card-modern mb-4">
+        <div class="card-modern mb-4" v-if="chartsReady">
           <div class="p-3 border-bottom fw-semibold">Entradas x Saídas</div>
           <div class="p-3">
             <VueApexCharts
@@ -118,7 +118,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref, nextTick, watch } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import AppLayout from '@/components/layouts/AppLayout.vue'
 import { useBalanceStore } from '@/stores/balance'
@@ -126,6 +126,12 @@ import { useUiStore } from '@/stores/ui'
 
 const store   = useBalanceStore()
 const uiStore = useUiStore()
+
+const chartsReady = ref(false)
+watch(() => store.loading, (loading) => {
+  if (loading) chartsReady.value = false
+  else nextTick(() => { chartsReady.value = true })
+})
 
 const fmt = (v: number) => uiStore.formatCurrency(v)
 

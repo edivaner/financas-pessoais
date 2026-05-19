@@ -95,7 +95,7 @@ export const useAuthStore = defineStore('auth', () => {
     const form = new FormData()
     form.append('foto', file)
     const { data } = await axios.post('/api/auth/avatar', form)
-    user.value = data.data
+    applyUserPreferences(data.data)
   }
 
   if (token.value) fetchUser()

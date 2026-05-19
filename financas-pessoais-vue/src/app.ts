@@ -11,7 +11,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import './theme.scss'
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || ''
+
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.withCredentials = true
 

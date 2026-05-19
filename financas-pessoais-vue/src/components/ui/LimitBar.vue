@@ -36,14 +36,14 @@ const pct = computed(() =>
 )
 
 const barClass = computed(() => {
-  if (pct.value >= 100) return 'bg-danger'
-  if (pct.value >= 70)  return 'bg-warning'
+  if (pct.value >= 90) return 'bg-danger'
+  if (pct.value >= 70) return 'bg-warning'
   return 'bg-success'
 })
 
 const pctClass = computed(() => {
-  if (pct.value >= 100) return 'text-danger'
-  if (pct.value >= 70)  return 'text-warning'
+  if (pct.value >= 90) return 'text-danger'
+  if (pct.value >= 70) return 'text-warning'
   return 'text-success'
 })
 

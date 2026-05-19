@@ -69,19 +69,25 @@
         </div>
       </div>
 
-      <!-- Zona de perigo -->
-      <div class="card-modern mt-3 p-3 border-danger" style="border-color: #ef444455 !important;">
+      <!-- Logout -->
+      <button class="btn btn-outline-danger w-100 mt-3" @click="handleLogout">
+        <i class="bi bi-box-arrow-right me-2"></i> Sair da conta
+      </button>
+
+      <!-- Zona de perigo (colapsável) -->
+      <div class="mt-4 mb-2">
+        <button class="btn btn-link btn-sm text-danger p-0" @click="showDangerZone = !showDangerZone">
+          <i class="bi bi-chevron-down me-1" :style="showDangerZone ? 'transform:rotate(180deg)' : ''" style="transition:.2s"></i>
+          Zona de perigo
+        </button>
+      </div>
+      <div v-if="showDangerZone" class="card-modern p-3" style="border-color: #ef444455 !important; border: 1px solid;">
         <p class="fw-semibold text-danger mb-1"><i class="bi bi-exclamation-triangle me-2"></i>Zona de Perigo</p>
         <p class="text-secondary small mb-3">Apaga todos os seus lançamentos, contas, cartões, categorias, subcategorias e limites. Irreversível.</p>
         <button class="btn btn-outline-danger btn-sm w-100" @click="showResetModal = true">
           Zerar minha conta
         </button>
       </div>
-
-      <!-- Logout -->
-      <button class="btn btn-outline-danger w-100 mt-3" @click="handleLogout">
-        <i class="bi bi-box-arrow-right me-2"></i> Sair da conta
-      </button>
     </div>
 
     <!-- Reset confirmation modal -->
@@ -228,6 +234,7 @@ const handleLogout = async () => {
   window.location.href = '/login'
 }
 
+const showDangerZone    = ref(false)
 const showResetModal    = ref(false)
 const resetConfirmText  = ref('')
 const resetLoading      = ref(false)

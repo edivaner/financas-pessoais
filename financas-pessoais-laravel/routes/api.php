@@ -11,6 +11,8 @@ use App\Http\Controllers\LancamentoController;
 use App\Http\Controllers\ImagemController;
 use App\Http\Controllers\ResetController;
 
+Route::get('health', fn () => response()->json(['ok' => true]));
+
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login',    [AuthController::class, 'login']);

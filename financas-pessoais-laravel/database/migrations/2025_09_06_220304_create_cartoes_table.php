@@ -19,8 +19,10 @@ return new class extends Migration
             $table->enum('tipo', ['MULTIPLO', 'CREDITO', 'DEBITO']);
             $table->decimal('fatura_total', 19, 4)->default(0);
             $table->decimal('limite_total', 19, 4)->default(0);
-            $table->date('data_fechamento')->nullable();
+            $table->tinyInteger('dia_vencimento')->nullable();
+            $table->tinyInteger('dias_antes_fechamento')->default(5);
             $table->uuid('imagem_id')->nullable();
+            $table->string('logo_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

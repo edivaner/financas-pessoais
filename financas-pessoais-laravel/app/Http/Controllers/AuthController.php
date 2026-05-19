@@ -31,7 +31,7 @@ class AuthController extends Controller
         $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
-            'data'    => ['token' => $token, 'user' => $user],
+            'data'    => ['token' => $token, 'user' => $user->load('imagem')],
             'message' => 'Usuário criado com sucesso.',
         ], 201);
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
         $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
-            'data'    => ['token' => $token, 'user' => $user],
+            'data'    => ['token' => $token, 'user' => $user->load('imagem')],
             'message' => 'Login realizado.',
         ]);
     }
