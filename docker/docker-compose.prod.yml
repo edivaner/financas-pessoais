@@ -1,0 +1,57 @@
+name: financas-pessoais-prod
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
+      - vue_dist:/usr/share/nginx/html:ro
+      - backend_storage:/var/www/html/storage:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ../financas-pessoais-laravel
+      dockerfile: Dockerfile.prod
+    env_file:
+      - .env.prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_storage:/var/www/html/storage
+    restart: unless-stopped
+
+  frontend-build:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ../financas-pessoais-vue:/app
+      - vue_dist:/app/dist
+    command: sh -c "npm ci && npm run build && cp -r dist/. /app/dist/"
+    environment:
+      - VITE_API_URL=
+    profiles:
+      - build
+
+  postgres:
+    image: postgres:16-alpine
+    env_file:
+      - .env.prod
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  dbdata:
+  vue_dist:
+  backend_storage:
